@@ -15,19 +15,16 @@
   "scripts": {
     "srv": "NODE_ENV=development PORT=8086 ts-node-dev -r dotenv/config src/dev.ts",
     "clear": "rm -rf build tsconfig.tsbuildinfo",
-    "dev": "node ../../node_modules/ttypescript/lib/tsc.js -w",
+    "dev": "node tsc -w",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "build": "run-p build:*",
-    "build:main": "node ../../node_modules/ttypescript/lib/tsc.js -b tsconfig.json",
-    "build:module": "node ../../node_modules/ttypescript/lib/tsc.js -b tsconfig.module.json"
+    "build:main": "tsc -b tsconfig.json",
+    "build:module": "tsc -b tsconfig.module.json"
   },
   "dependencies": {
     "@finalytic/integration": "2.0.0",
     "@finalytic/client": "2.0.0",
     "@finalytic/utils": "2.0.0",
-    "dayjs": "^1.10.7",
-    "got": "^11.x.x",
-    "p-throttle": "^4.1.1",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
@@ -35,8 +32,6 @@
     "@types/node": "14.18.1",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
-    "dotenv": "^10.0.0",
-    "esbuild": "^0.14.5",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
@@ -44,11 +39,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
     "jest": "^27.4.5",
-    "nodemon": "^2.0.15",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.2",
-    "ts-node": "^10.1.0",
     "typescript": "^4.5.4"
   }
 }

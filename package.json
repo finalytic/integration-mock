@@ -6,28 +6,26 @@
   "repository": "https://github.com/finalytic/integration-mock",
   "license": "UNLICENSED",
   "keywords": [],
-  "main": "build/main/index.js",
-  "typings": "build/main/index.d.ts",
-  "module": "build/module/index.js",
+  "main": "dist/entry.js",
   "engines": {
     "node": ">=14"
   },
   "scripts": {
-    "srv": "NODE_ENV=development PORT=8086 ts-node-dev -r dotenv/config src/dev.ts",
+    "dev": "NODE_ENV=development PORT=3000 ts-node-dev ./src/entry.ts",
     "clear": "rm -rf build tsconfig.tsbuildinfo",
-    "dev": "node tsc -w",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "build": "run-p build:*",
-    "build:main": "tsc -b tsconfig.json",
-    "build:module": "tsc -b tsconfig.module.json"
+    "build": "npm run build:tsc && npm run build:esb",
+    "build:tsc": "tsc -b tsconfig.json",
+    "build:esb": "esbuild ./src/entry.js --bundle --outdir=dist --platform=node --target=node14 --sourcemap --keep-names"
   },
   "dependencies": {
-    "@finalytic/integration": "2.0.0",
     "@finalytic/client": "2.0.0",
+    "@finalytic/integration": "2.0.2",
     "@finalytic/utils": "2.0.0",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
+    "esbuild": "^0.14.25",
     "@jest/globals": "^27.4.4",
     "@types/node": "14.18.1",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
@@ -39,7 +37,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
     "jest": "^27.4.5",
-    "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.2",
     "typescript": "^4.5.4"

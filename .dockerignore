@@ -1,0 +1,11 @@
+node_modules/
+.github/
+.husky/
+.vscode/
+dist/
+build/
+coverage/
+jest.*.js
+render.yaml
+tsconfig.tsbuildinfo
+LICENSE

@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: integration-mock
+    autoDeploy: false
+    healthCheckPath: /healthz
+    env: docker
+    dockerfilePath: ./Dockerfile
+    region: frankfurt

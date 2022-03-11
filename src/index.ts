@@ -1,4 +1,4 @@
-import { booking, rental } from './modules';
+import { booking, unit } from './modules';
 import { connector } from './connectors';
 import { createIntegration } from '@finalytic/integration';
 import { emailResult, something } from './tags';
@@ -17,7 +17,7 @@ export const integration = createIntegration({
   },
   connectors: [connector],
   // Extract
-  modules: [rental, booking],
+  modules: [unit, booking],
   // Act
   actions: [sendEmail],
   // Etc

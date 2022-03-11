@@ -1,7 +1,24 @@
 import { ServiceClass } from '@finalytic/integration';
 import { day } from '@finalytic/utils';
 
+export type Unit = {
+  id: number;
+  name: string;
+  updatedAt: number;
+  address: string;
+};
+export type Booking = {
+  id: number;
+  guestName: string;
+  checkin: string;
+  checkout: string;
+  unitId: number;
+  updatedAt: number;
+};
+
+// Extend from ServiceClass, no constructor necessary
 export class RentalApi extends ServiceClass {
+  // Implement the connect function
   async connect(credentials: { apiKey: string }) {
     console;
     return credentials;
@@ -10,7 +27,7 @@ export class RentalApi extends ServiceClass {
   public async getUnits() {
     const items = Array(3)
       .fill(0)
-      .map((_, id) => ({
+      .map<Unit>((_, id) => ({
         id,
         name: `Unit ${id}`,
         updatedAt: +new Date(),
@@ -18,15 +35,15 @@ export class RentalApi extends ServiceClass {
       }));
     return items;
   }
-  public async getBookingsByUnit(unitId: string, start?: string, end?: string) {
+  public async getBookings(start?: string, end?: string) {
     const items = Array(3)
       .fill(0)
-      .map((_, id) => ({
+      .map<Booking>((_, id) => ({
         id,
-        guestName: `Mr. ${unitId} ${id}`,
+        guestName: `Mr. ${id}`,
         checkin: day().toISOString(),
         checkout: day().add(2, 'd').toISOString(),
-        unitId: unitId,
+        unitId: id,
         updatedAt: +new Date(),
       }));
     return items;

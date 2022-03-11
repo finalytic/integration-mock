@@ -1,40 +1,39 @@
-import { RentalApi } from '../../service';
-import { S, day } from '@finalytic/utils';
+import { RentalApi } from '../service';
+import { S } from '@finalytic/utils';
 import { createModule, transforms } from '@finalytic/integration';
 
 export const booking = createModule(
   'booking',
+  // Entities can be defined the "hard" way. In this case we'll validate entities in our system, since we know the structure
   {
     id: S.number(),
     guestName: S.string(),
-    unitId: S.string(),
+    unitId: S.number(),
     checkin: S.string(),
     checkout: S.string(),
     updatedAt: S.number(),
   },
   async ({ dispatch, useService, scope, log }) => {
     console.log('API');
+
+    // Let our system take care of connecting, just pass the service
     const service = await useService(RentalApi);
 
-    console.log('EXTRACT', scope);
-    for (const unit of scope.units || []) {
-      log.info(`Extracting unit ${unit} ...`);
-      for (const item of await service.getBookingsByUnit(
-        unit,
-        scope.date?.start,
-        scope.date?.end
-      )) {
-        dispatch(booking.entity, {
-          uniqueRef: `${item.id}`,
-          description: item.guestName,
-          data: item,
-        });
-        // dispatch(something, { message: '' });
-      }
+    for (const item of await service.getBookings(
+      scope.date?.start,
+      scope.date?.end
+    )) {
+      // Dispatch entities by passing the entity definition + the data
+      dispatch(booking.entity, {
+        uniqueRef: `${item.id}`,
+        description: item.guestName,
+        data: item,
+      });
     }
   },
   async ({ dispatch, log, params }) => {
     log.info('Transforming ...');
+    // Dispatch a transformation by passing our build in transform definitions (unit, booking, ...) and the data
     dispatch(transforms.booking, {
       bookerName: params.data.guestName,
       checkIn: params.data.checkin,

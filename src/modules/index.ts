@@ -1,2 +1,2 @@
-export * from './rental';
+export * from './unit';
 export * from './booking';

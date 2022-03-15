@@ -15,6 +15,13 @@ export type Booking = {
   unitId: number;
   updatedAt: number;
 };
+export type Payment = {
+  id: number;
+  sentAt: string;
+  amount: number;
+  reference: string;
+  lines: [string, number][];
+};
 
 // Extend from ServiceClass, no constructor necessary
 export class RentalApi extends ServiceClass {
@@ -24,6 +31,22 @@ export class RentalApi extends ServiceClass {
     return credentials;
   }
 
+  public async getPayments() {
+    const items = Array(3)
+      .fill(0)
+      .map<Payment>((_, id) => ({
+        id,
+        reference: `Unit ${id}`,
+        sentAt: day().toISOString(),
+        amount: id * 100,
+        lines: [
+          ['Accommodation', id * 100],
+          ['Cleaning', 50],
+          ['OTA', -50],
+        ],
+      }));
+    return items;
+  }
   public async getUnits() {
     const items = Array(3)
       .fill(0)

@@ -1,8 +1,7 @@
-import { booking, unit } from './modules';
+import { booking, payment, unit } from './modules';
 import { connector } from './connectors';
 import { createIntegration } from '@finalytic/integration';
 import { emailResult, something } from './tags';
-import { sendEmail } from './actions';
 
 export const integration = createIntegration({
   // Setup
@@ -17,9 +16,9 @@ export const integration = createIntegration({
   },
   connectors: [connector],
   // Extract
-  modules: [unit, booking],
+  modules: [unit, booking, payment],
   // Act
-  actions: [sendEmail],
+  // actions: [sendEmail],
   // Etc
   tags: [emailResult, something],
   /*orchestrator: async ({ extract, retrieve }) => {

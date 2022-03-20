@@ -1,6 +1,6 @@
 import { Payment, RentalApi } from '../service';
-import { createModule, transforms } from '@finalytic/integration';
 import { bankersRoundToCents, toCamelCase } from '@finalytic/utils';
+import { createModule, transforms } from '@finalytic/integration';
 import { gql } from '@finalytic/client';
 
 export const payment = createModule<Payment>(

@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@finalytic/client": "2.0.4",
-    "@finalytic/integration": "2.0.6",
+    "@finalytic/integration": "2.1.0",
     "@finalytic/utils": "2.0.3",
     "source-map-support": "^0.5.21"
   },

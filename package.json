@@ -19,7 +19,7 @@
     "build:esb": "esbuild ./src/entry.js --bundle --outdir=dist --platform=node --target=node14 --sourcemap --keep-names"
   },
   "dependencies": {
-    "@finalytic/client": "^2.0.8",
+    "@finalytic/client": "^2.0.9",
     "@finalytic/integration": "^2.1.0",
     "@finalytic/utils": "^2.0.6",
     "source-map-support": "^0.5.21"

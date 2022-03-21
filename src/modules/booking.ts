@@ -21,7 +21,8 @@ export const booking = createModule(
 
     for (const item of await service.getBookings(
       scope.date?.start,
-      scope.date?.end
+      scope.date?.end,
+      5
     )) {
       // Dispatch entities by passing the entity definition + the data
       dispatch(booking.entity, {

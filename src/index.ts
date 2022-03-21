@@ -7,8 +7,8 @@ export const integration = createIntegration({
   // Setup
   info: {
     icon: '',
-    name: 'mock',
-    title: 'Mock',
+    name: 'mock4',
+    title: 'Mock 4',
     description: 'Some description',
     version: '1.0.2',
     // icon: '92103i91ppe1o2',

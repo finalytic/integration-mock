@@ -58,15 +58,16 @@ export class RentalApi extends ServiceClass {
       }));
     return items;
   }
-  public async getBookings(start?: string, end?: string) {
-    const items = Array(3)
+  public async getBookings(start?: string, end?: string, l = 3) {
+    const units = await this.getUnits();
+    const items = Array(l)
       .fill(0)
       .map<Booking>((_, id) => ({
         id,
         guestName: `Mr. ${id}`,
         checkin: day().toISOString(),
         checkout: day().add(2, 'd').toISOString(),
-        unitId: id,
+        unitId: id % units.length,
         updatedAt: +new Date(),
       }));
     return items;

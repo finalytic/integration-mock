@@ -6,3 +6,9 @@ services:
     env: docker
     dockerfilePath: ./Dockerfile
     region: frankfurt
+    envVars:
+      - key: TEMPORAL_HOST
+        fromService:
+          name: temporal
+          type: pserv
+          property: host

@@ -65,8 +65,8 @@ export class RentalApi extends ServiceClass {
       .map<Booking>((_, id) => ({
         id,
         guestName: `Mr. ${id}`,
-        checkin: day().toISOString(),
-        checkout: day().add(2, 'd').toISOString(),
+        checkin: day(end).toISOString(),
+        checkout: day(end).add(2, 'd').toISOString(),
         unitId: id % units.length,
         updatedAt: +new Date(),
       }));

@@ -1,4 +1,4 @@
-import { handler } from '@finalytic/integration';
 import { integration } from '.';
+import { worker } from '@finalytic/integration';
 
-handler(integration);
+worker(integration);

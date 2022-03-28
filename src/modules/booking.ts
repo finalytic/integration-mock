@@ -20,8 +20,8 @@ export const booking = createModule(
     const service = await useService(RentalApi);
 
     for (const item of await service.getBookings(
-      scope.date?.start,
-      scope.date?.end,
+      scope.cursor?.start,
+      scope.cursor?.end,
       5
     )) {
       // Dispatch entities by passing the entity definition + the data
@@ -30,6 +30,7 @@ export const booking = createModule(
         description: item.guestName,
         data: item,
       });
+      scope.cursor.end = item.checkout;
     }
   },
   async ({ dispatch, log, params }) => {

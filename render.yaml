@@ -1,7 +1,7 @@
 services:
   - type: web
     name: integration-mock
-    autoDeploy: false
+    autoDeploy: true
     healthCheckPath: /healthz
     env: docker
     dockerfilePath: ./Dockerfile

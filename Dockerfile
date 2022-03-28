@@ -10,7 +10,7 @@ COPY . .
 RUN npm run build
 
 ### Stage 2: Runtime
-FROM node:16-alpine
+FROM node:16-bullseye-slim
 WORKDIR /app
 
 COPY --from=0 /app/dist ./

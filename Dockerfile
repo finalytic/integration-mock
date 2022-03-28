@@ -14,6 +14,7 @@ FROM node:16-alpine
 WORKDIR /app
 
 COPY --from=0 /app/dist ./
+RUN npm init --yes && npm i --save @temporalio/worker
 
 ENV PORT=3000
 ENV NODE_ENV=production

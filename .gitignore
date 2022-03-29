@@ -7,5 +7,4 @@ data/
 .DS_Store
 node_modules
 logs/*
-pnpm-lock.yaml
 dist/

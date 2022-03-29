@@ -14,13 +14,11 @@
     "dev": "NODE_ENV=development PORT=3000 ts-node-dev ./src/entry.ts",
     "clear": "rm -rf build tsconfig.tsbuildinfo",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "build": "npm run build:tsc && npm run build:esb",
-    "build:tsc": "tsc -b tsconfig.json",
-    "build:esb": "esbuild ./src/entry.js --bundle --outdir=dist --platform=node --sourcemap --external:@temporalio/worker"
+    "build": "tsc -b tsconfig.json"
   },
   "dependencies": {
-    "@finalytic/client": "^3.0.0",
-    "@finalytic/integration": "^3.0.3",
+    "@finalytic/client": "^3.0.1",
+    "@finalytic/integration": "^3.0.4",
     "@finalytic/utils": "^3.0.0",
     "source-map-support": "^0.5.21"
   },
@@ -29,7 +27,6 @@
     "@types/node": "14.18.1",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
-    "esbuild": "^0.14.25",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-eslint-comments": "^3.2.0",

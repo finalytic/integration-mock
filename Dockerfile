@@ -1,24 +1,31 @@
-### Stage 1: Prepare
-FROM node:16-alpine
+### Stage 1: Install
+FROM node:16-bullseye-slim
 WORKDIR /app
-ARG PNPM_VERSION=6.31.0
-RUN npm install -g pnpm@${PNPM_VERSION}
+RUN npm install -g pnpm@6.31.0
 
-COPY package.json ./
-RUN pnpm install
+COPY pnpm-lock.yaml ./
+RUN pnpm fetch
+
 COPY . .
+RUN pnpm install -r --offline
+
 RUN npm run build
 
 ### Stage 2: Runtime
 FROM node:16-bullseye-slim
 WORKDIR /app
+RUN npm install -g pnpm@6.31.0
 
-COPY --from=0 /app/dist ./
-RUN npm init --yes && npm i --save @temporalio/worker
+COPY pnpm-lock.yaml ./
+RUN pnpm fetch --prod
+
+COPY --from=0 /app/dist ./dist
+COPY . .
+RUN pnpm install -r --offline --prod
 
 ENV PORT=3000
 ENV NODE_ENV=production
 
 EXPOSE 3000
 
-CMD ["node", "entry.js"]
+CMD ["node", "dist/entry.js"]

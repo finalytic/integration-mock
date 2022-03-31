@@ -11,7 +11,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "dev": "NODE_ENV=development PORT=3000 ts-node-dev ./src/entry.ts",
+    "dev": "NODE_ENV=developmen ts-node-dev ./src/entry.ts",
     "clear": "rm -rf build tsconfig.tsbuildinfo",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "build": "tsc -b tsconfig.json"
